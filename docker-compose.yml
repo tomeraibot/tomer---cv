@@ -1,2 +1,12 @@
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
+version: '3.8'
+services:
+  cv-app:
+    build: . # במקום image, אנחנו אומרים לו לבנות מה-Dockerfile
+    container_name: cv-app
+    restart: always
+    networks:
+      - openclaw_default
+
+networks:
+  openclaw_default:
+    external: true
