@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tomer Sahar - Product Leader, CPO, COO, AI Strategy Expert">
+    <meta name="author" content="Tomer Sahar">
+    <title>Tomer Sahar - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --text-main: #1e293b;
+            --text-light: #475569;
+            --bg-page: #f1f5f9;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.2);
+            --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
+            --transition-speed: 0.2s;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: opacity var(--transition-speed) ease-in-out;
+        }
+
+        /* Hebrew Font Override */
+        [dir="rtl"] body { 
+            font-family: 'Assistant', sans-serif; 
+        }
+
+        /* Language Visibility Logic */
+        [lang="en"] .he-content { 
+            display: none !important; 
+        }
+        
+        [lang="he"] .en-content { 
+            display: none !important; 
+        }
+
+        /* Floating Control Panel */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .btn-control {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-speed);
+            font-size: 0.9rem;
+            min-width: 160px;
+        }
+
+        .btn-control:hover { 
+            transform: translateY(-2px); 
+            background: #1e293b;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .btn-control:active {
+            transform: translateY(0);
+        }
+        
+        .btn-control i { 
+            width: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Main A4 Container */
+        .page-container {
+            max-width: 210mm;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            min-height: 297mm;
+        }
+
+        /* Header Section */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 35px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Graphic Overlay */
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.03) 60%);
+            pointer-events: none;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .roles {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+        }
+
+        .roles .separator { 
+            color: var(--accent); 
+            margin: 0 5px; 
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 30px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #cbd5e1;
+        }
+        
+        .contact-item i {
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        /* Enhanced link styling for better PDF compatibility */
+        .contact-item a { 
+            color: inherit; 
+            text-decoration: none; 
+            border-bottom: 1px solid transparent; 
+            transition: border-color var(--transition-speed), color var(--transition-speed);
+            cursor: pointer;
+            position: relative; 
+            z-index: 50;
+            display: inline-block;
+        }
+        
+        .contact-item a:hover { 
+            border-color: var(--accent); 
+            color: white; 
+        }
+
+        .contact-item a:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
+        /* Force LTR for contact details */
+        .ltr-text { 
+            direction: ltr; 
+            unicode-bidi: embed; 
+        }
+
+        /* Content Layout */
+        .content { 
+            padding: 35px 40px; 
+        }
+
+        section { 
+            margin-bottom: 25px; 
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+        }
+
+        .summary {
+            color: var(--text-light);
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Job Block */
+        .job-block {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        .job-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .company-name { 
+            font-weight: 700; 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            font-size: 0.95rem; 
+        }
+        
+        .separator { 
+            margin: 0 6px; 
+            color: var(--accent); 
+            font-weight: 400;
+        }
+        
+        .role-title { 
+            font-weight: 600; 
+            color: var(--text-main); 
+            font-size: 0.95rem; 
+        }
+        
+        .date { 
+            font-size: 0.85rem; 
+            color: var(--text-light); 
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Bullet Points */
+        ul { 
+            list-style: none; 
+            padding: 0; 
+        }
+        
+        li {
+            position: relative;
+            margin-bottom: 4px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        [dir="ltr"] li { 
+            padding-left: 18px; 
+        }
+        
+        [dir="ltr"] li::before { 
+            content: "▪"; 
+            position: absolute; 
+            left: 0; 
+            color: var(--accent); 
+            font-weight: bold;
+        }
+        
+        [dir="rtl"] li { 
+            padding-right: 18px; 
+        }
+        
+        [dir="rtl"] li::before { 
+            content: "▪"; 
+            position: absolute; 
+            right: 0; 
+            color: var(--accent); 
+            font-weight: bold;
+        }
+
+        li strong { 
+            color: var(--text-main); 
+            font-weight: 600; 
+        }
+
+        /* Accessibility: Screen reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Print Optimization */
+        @media print {
+            @page { 
+                margin: 0; 
+                size: A4; 
+            }
+            
+            body { 
+                background-color: white; 
+                margin: 0; 
+            }
+            
+            .controls { 
+                display: none !important; 
+            }
+            
+            .page-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+                min-height: auto;
+            }
+            
+            /* Tighter spacing for one-page fit */
+            header { 
+                padding: 12px 30px !important; 
+            }
+            
+            .content { 
+                padding: 12px 30px !important; 
+            }
+            
+            h1 { 
+                font-size: 2.2rem; 
+                margin-bottom: 3px; 
+            }
+            
+            .roles { 
+                margin-bottom: 10px; 
+                font-size: 0.95rem; 
+            }
+            
+            section { 
+                margin-bottom: 8px !important; 
+            }
+            
+            h2 { 
+                margin-bottom: 5px !important; 
+                padding-bottom: 3px !important; 
+                font-size: 0.95rem;
+            }
+            
+            .job-block { 
+                margin-bottom: 6px !important; 
+            }
+            
+            .summary { 
+                margin-bottom: 10px !important; 
+                line-height: 1.4 !important;
+            }
+            
+            li { 
+                margin-bottom: 0.5px !important; 
+                line-height: 1.3 !important; 
+                font-size: 0.85rem !important;
+            }
+            
+            /* Ensure links are functional in PDF */
+            a { 
+                text-decoration: none !important; 
+                color: inherit !important;
+            }
+
+            /* Prevent page breaks in critical sections */
+            .job-block,
+            .summary,
+            h2 {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .page-container { 
+                margin: 0; 
+                width: 100%; 
+                min-height: auto;
+            }
+            
+            header { 
+                padding: 30px 20px; 
+            }
+            
+            .content { 
+                padding: 25px 20px; 
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .roles {
+                font-size: 1rem;
+            }
+            
+            .job-header { 
+                flex-direction: column; 
+                gap: 2px;
+                align-items: flex-start;
+            }
+
+            [dir="rtl"] .job-header {
+                align-items: flex-end;
+            }
+            
+            .controls { 
+                bottom: 20px; 
+                top: auto; 
+                right: 20px; 
+                left: 20px;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .btn-control {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .contact-grid {
+                gap: 8px 20px;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (max-width: 900px) and (min-width: 601px) {
+            .page-container {
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body lang="en"> 
+    
+    <!-- Floating Controls -->
+    <div class="controls" role="toolbar" aria-label="Resume controls">
+        <button class="btn-control" onclick="toggleLanguage()" aria-label="Toggle language between English and Hebrew">
+            <i class="fa-solid fa-language" aria-hidden="true"></i>
+            <span class="en-content">Switch to Hebrew</span>
+            <span class="he-content">עבור לאנגלית</span>
+        </button>
+        <button class="btn-control" onclick="window.print()" aria-label="Print or download resume as PDF">
+            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+            <span class="en-content">Download PDF</span>
+            <span class="he-content">הורד PDF</span>
+        </button>
+    </div>
+
+    <!-- Main Resume Container -->
+    <div class="page-container">
+        <header>
+            <div class="header-content">
+                <h1>TOMER SAHAR</h1>
+                
+                <div class="roles">
+                    <span class="en-content">Product Leader <span class="separator">|</span> CPO <span class="separator">|</span> COO <span class="separator">|</span> AI Strategy</span>
+                    <span class="he-content">Product Leader <span class="separator">|</span> CPO <span class="separator">|</span> COO <span class="separator">|</span> AI Strategy</span>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+972547253314" class="ltr-text" aria-label="Phone number">054-7253314</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:t0547253314@gmail.com" class="ltr-text" aria-label="Email address">t0547253314@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        <a href="https://www.linkedin.com/in/tomer-sahar-product" target="_blank" rel="noopener noreferrer" class="ltr-text" aria-label="LinkedIn profile">https://linkedin.com/in/tomer-sahar-product</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                        <a href="https://productexperts.co.il" target="_blank" rel="noopener noreferrer" class="ltr-text" aria-label="Website">https://productexperts.co.il</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- Executive Summary -->
+            <section>
+                <h2>
+                    <span class="en-content">Executive Summary</span>
+                    <span class="he-content">תקציר מנהלים</span>
+                </h2>
+                <div class="summary">
+                    <span class="en-content">Product Leader with 10+ years of experience driving high-scale growth, with a specialized focus on Product Management and AI Strategy. Proven track record in scaling global operations and mentoring high-performing teams.</span>
+                    <span class="he-content">Product Leader עם למעלה מ-10 שנות ניסיון בהובלת צמיחה רחבת היקף, עם התמחות מיוחדת בניהול מוצר ואסטרטגיית AI. בעל רקורד מוכח בהרחבת פעילות גלובלית (Global Scaling) וחניכת צוותים בעלי ביצועים גבוהים.</span>
+                </div>
+            </section>
+
+            <!-- Professional Experience -->
+            <section>
+                <h2>
+                    <span class="en-content">Professional Experience</span>
+                    <span class="he-content">ניסיון מקצועי</span>
+                </h2>
+
+                <!-- Product Experts -->
+                <div class="job-block">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">PRODUCT EXPERTS</span>
+                            <span class="separator">|</span>
+                            <span class="role-title">CPO & AI Consultant</span>
+                        </div>
+                        <span class="date">
+                            <span class="en-content">2020 – Present</span>
+                            <span class="he-content ltr-text">2020 – Present</span>
+                        </span>
+                    </div>
+                    
+                    <ul class="en-content">
+                        <li><strong>AI Consultant & Implementation:</strong> Streamlining organizational work processes through AI transformation, significantly reducing manual overhead and technical debt.</li>
+                        <li><strong>Product Leadership:</strong> Established and led the Product Department, overseeing Product Management, Advanced Product Strategy, and Data Analysis.</li>
+                        <li><strong>Executive Mentorship:</strong> Mentoring dozens of Product Managers, ranging from junior levels to C-level executives, and providing strategic product consultancy to B2B clients.</li>
+                    </ul>
+
+                    <ul class="he-content">
+                        <li><strong>ייעוץ והטמעת AI:</strong> ייעול תהליכים ארגוניים באמצעות טרנספורמציית AI, תוך הפחתה משמעותית של עבודה ידנית וחוב טכני.</li>
+                        <li><strong>מנהיגות מוצר:</strong> הקמה והובלה של מחלקת המוצר, כולל ניהול מוצר, אסטרטגיית מוצר מתקדמת ו-Data Analysis.</li>
+                        <li><strong>חניכת מנהלים (Mentorship):</strong> ליווי אישי לעשרות מנהלי מוצר, מג'וניורים ועד דרג ה-C-Level, ומתן ייעוץ מוצר אסטרטגי לחברות B2B.</li>
+                    </ul>
+                </div>
+
+                <!-- Global Dev Experts -->
+                <div class="job-block">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">GLOBAL DEV EXPERTS</span>
+                            <span class="separator">|</span>
+                            <span class="role-title">COO</span>
+                        </div>
+                        <span class="date ltr-text">2023 – Present</span>
+                    </div>
+
+                    <ul class="en-content">
+                        <li><strong>GTM Strategy & Global Scaling:</strong> Spearheaded the Go-To-Market strategy for European and American markets, establishing new revenue streams and expanding the company's global footprint, resulting in 3x revenue growth year-over-year.</li>
+                        <li><strong>Global Operations Management:</strong> Managing international teams across multiple time zones, coordinating large-scale delivery and cross-functional synchronization.</li>
+                        <li><strong>Operational Strategy:</strong> Designing and implementing scalable processes to support rapid growth and enhance organizational agility.</li>
+                    </ul>
+
+                    <ul class="he-content">
+                        <li><strong>אסטרטגיית GTM וצמיחה גלובלית:</strong> הובלת אסטרטגיית החדירה לשווקים באירופה וארה"ב, יצירת מקורות הכנסה חדשים והרחבת הפעילות הגלובלית, מה שהוביל לצמיחה של פי 3 בהכנסות (YOY).</li>
+                        <li><strong>ניהול אופרציה גלובלית:</strong> ניהול צוותים בינלאומיים על פני אזורי זמן שונים, תיאום דליברי בסקייל גבוה וסנכרון חוצה-ארגוני.</li>
+                        <li><strong>אסטרטגיה תפעולית:</strong> תכנון והטמעה של תהליכים סקלביליים (Scalable) לתמיכה בצמיחה מהירה ושיפור הגמישות הארגונית.</li>
+                    </ul>
+                </div>
+
+                <!-- SciPlay -->
+                <div class="job-block">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">SCIPLAY</span>
+                            <span class="separator">|</span>
+                            <span class="role-title">Product Manager (Live Ops)</span>
+                        </div>
+                        <span class="date ltr-text">2016 – 2020</span>
+                    </div>
+
+                    <ul class="en-content">
+                        <li><strong>Live Ops Leadership:</strong> Managed rapid content deployment and real-time app changes to drive user engagement and retention.</li>
+                        <li><strong>Revenue & Data:</strong> Focused on monetization and revenue growth using aggressive A/B testing and deep data analytics.</li>
+                    </ul>
+
+                    <ul class="he-content">
+                        <li><strong>הובלת Live Ops:</strong> ניהול פריסת תוכן מהירה ושינויים באפליקציה בזמן אמת להגברת ה-Engagement ושימור משתמשים.</li>
+                        <li><strong>הכנסות ודאטה:</strong> התמקדות במוניטיזציה וצמיחה בהכנסות באמצעות בדיקות A/B אגרסיביות וניתוח נתונים מעמיק.</li>
+                    </ul>
+                </div>
+
+                <!-- Ginger Software -->
+                <div class="job-block">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">GINGER SOFTWARE</span>
+                            <span class="separator">|</span>
+                            <span class="role-title">Product Manager</span>
+                        </div>
+                        <span class="date ltr-text">2015 – 2016</span>
+                    </div>
+
+                    <ul class="en-content">
+                        <li><strong>NLP Innovation:</strong> Developed smart keyboard features based on Natural Language Processing (NLP) and predictive text algorithms.</li>
+                        <li><strong>Monetization:</strong> Implemented and optimized revenue models within the predictive keyboard ecosystem.</li>
+                    </ul>
+
+                    <ul class="he-content">
+                        <li><strong>חדשנות NLP:</strong> פיתוח פיצ'רים למקלדת חכמה המבוססים על עיבוד שפה טבעית (NLP) ואלגוריתמים לחיזוי טקסט.</li>
+                        <li><strong>מוניטיזציה:</strong> הטמעה ואופטימיזציה של מודלים עסקיים בתוך האקו-סיסטם של המקלדת החזויה.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section>
+                <h2>
+                    <span class="en-content">Education</span>
+                    <span class="he-content">השכלה</span>
+                </h2>
+                <div class="job-block">
+                    <div class="job-header">
+                        <span class="company-name" style="text-transform: none; color: var(--text-main);">
+                            <span class="en-content">Bachelor of Arts (B.A.) in Management Information Systems (MIS)</span>
+                            <span class="he-content">תואר ראשון (B.A) במערכות מידע ניהוליות (MIS)</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        /**
+         * Toggle between English and Hebrew languages
+         * Includes smooth fade transition
+         */
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('lang');
+            const newLang = currentLang === 'en' ? 'he' : 'en';
+            const newDir = newLang === 'he' ? 'rtl' : 'ltr';
+
+            // Fade out
+            document.body.style.opacity = '0';
+
+            setTimeout(() => {
+                html.setAttribute('lang', newLang);
+                html.setAttribute('dir', newDir);
+                
+                // Fade in
+                document.body.style.opacity = '1';
+            }, 200);
+        }
+
+        /**
+         * Keyboard accessibility for language toggle
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add keyboard shortcut: Alt+L to toggle language
+            document.addEventListener('keydown', function(e) {
+                if (e.altKey && e.key === 'l') {
+                    e.preventDefault();
+                    toggleLanguage();
+                }
+                // Add keyboard shortcut: Ctrl+P for print
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
