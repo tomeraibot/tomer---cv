@@ -1,303 +1,307 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tomer Sahar - Product Leader, CPO, COO, AI Strategy">
-    <meta name="author" content="Tomer Sahar">
-    <title>Tomer Sahar - Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #3b82f6;
-            --text-main: #1e293b;
-            --text-light: #475569;
-            --bg-page: #f1f5f9;
-            --white: #ffffff;
-            --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
-            --transition-speed: 0.2s;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tomer Sahar - Product Leader, CPO, COO, AI Strategy">
+<meta name="author" content="Tomer Sahar">
+<title>Tomer Sahar - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
+<style>
+:root {
+--primary: #0f172a;
+--accent: #3b82f6;
+--text-main: #1e293b;
+--text-light: #475569;
+--bg-page: #f1f5f9;
+--white: #ffffff;
+--shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
+--transition-speed: 0.2s;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.45;
-        }
+* { 
+box-sizing: border-box; 
+margin: 0; 
+padding: 0; 
+-webkit-print-color-adjust: exact !important;
+print-color-adjust: exact !important;
+}
 
-        .controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
+body {
+font-family: 'Inter', sans-serif;
+background-color: var(--bg-page);
+color: var(--text-main);
+line-height: 1.45;
+}
 
-        .btn-control {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all var(--transition-speed);
-            font-size: 0.9rem;
-        }
+.controls {
+position: fixed;
+top: 20px;
+right: 20px;
+z-index: 9999;
+}
 
-        .btn-control:hover { 
-            transform: translateY(-2px); 
-            background: #1e293b;
-        }
+.btn-control {
+background: rgba(15, 23, 42, 0.95);
+backdrop-filter: blur(10px);
+color: white;
+border: none;
+padding: 12px 20px;
+border-radius: 8px;
+cursor: pointer;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 10px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+transition: all var(--transition-speed);
+font-size: 0.9rem;
+}
 
-        .page-container {
-            width: 210mm;
-            margin: 0 auto;
-            background: var(--white);
-            box-shadow: var(--shadow-lg);
-        }
+.btn-control:hover { 
+transform: translateY(-2px); 
+background: #1e293b;
+}
 
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 28px 36px 22px;
-        }
+.page-container {
+width: 210mm;
+margin: 0 auto;
+background: var(--white);
+box-shadow: var(--shadow-lg);
+}
 
-        h1 {
-            font-size: 2.3rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-            letter-spacing: -0.02em;
-        }
+header {
+background-color: var(--primary);
+color: white;
+padding: 28px 36px 22px;
+}
 
-        .roles {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
+h1 {
+font-size: 2.3rem;
+font-weight: 700;
+margin-bottom: 3px;
+letter-spacing: -0.02em;
+}
 
-        .roles .separator { color: var(--accent); margin: 0 5px; }
+.roles {
+font-size: 0.95rem;
+color: #94a3b8;
+margin-bottom: 16px;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+font-weight: 300;
+}
 
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 24px;
-            font-size: 0.82rem;
-        }
+.roles .separator { color: var(--accent); margin: 0 5px; }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: #cbd5e1;
-        }
-        
-        .contact-item a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
-        .contact-item a:hover { border-color: var(--accent); color: white; }
+.contact-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 6px 24px;
+font-size: 0.82rem;
+}
 
-        .content { 
-            padding: 26px 36px 20px; 
-        }
+.contact-item {
+display: flex;
+align-items: center;
+gap: 7px;
+color: #cbd5e1;
+}
 
-        section { 
-            margin-bottom: 18px; 
-        }
+.contact-item a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+.contact-item a:hover { border-color: var(--accent); color: white; }
 
-        h2 {
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-        }
+.content { 
+padding: 26px 36px 20px; 
+}
 
-        .summary {
-            color: var(--text-light);
-            text-align: justify;
-            line-height: 1.5;
-            font-size: 0.85rem;
-        }
+section { 
+margin-bottom: 18px; 
+}
 
-        .job-block {
-            margin-bottom: 15px;
-            page-break-inside: avoid;
-        }
+h2 {
+font-size: 0.88rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: var(--primary);
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 6px;
+margin-bottom: 12px;
+}
 
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 4px;
-        }
+.summary {
+color: var(--text-light);
+text-align: justify;
+line-height: 1.5;
+font-size: 0.85rem;
+}
 
-        .company-name { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.86rem; }
-        .role-title { font-weight: 600; color: var(--text-main); font-size: 0.86rem; }
-        .date { font-size: 0.8rem; color: var(--text-light); font-weight: 500; white-space: nowrap; }
+.job-block {
+margin-bottom: 15px;
+page-break-inside: avoid;
+}
 
-        ul { list-style: none; padding: 0; }
-        
-        li {
-            position: relative;
-            margin-bottom: 3px;
-            color: var(--text-light);
-            font-size: 0.82rem;
-            padding-left: 15px;
-            line-height: 1.45;
-        }
+.job-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 4px;
+}
 
-        li::before { content: "▪"; position: absolute; left: 0; color: var(--accent); }
-        li strong { color: var(--text-main); font-weight: 600; }
+.company-name { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.86rem; }
+.role-title { font-weight: 600; color: var(--text-main); font-size: 0.86rem; }
+.date { font-size: 0.8rem; color: var(--text-light); font-weight: 500; white-space: nowrap; }
 
-        .separator { color: var(--accent); margin: 0 4px; }
+ul { list-style: none; padding: 0; }
 
-        section:last-child { margin-bottom: 0; }
-        section:last-child .job-block { margin-bottom: 0; }
+li {
+position: relative;
+margin-bottom: 3px;
+color: var(--text-light);
+font-size: 0.82rem;
+padding-left: 15px;
+line-height: 1.45;
+}
 
-        /* ===== PRINT ===== */
-        @media print {
-            @page { margin: 0; size: A4; }
-            body { background: white; }
-            .controls { display: none !important; }
-            .page-container { box-shadow: none; margin: 0; }
-        }
-    </style>
+li::before { content: "▪"; position: absolute; left: 0; color: var(--accent); }
+li strong { color: var(--text-main); font-weight: 600; }
+
+.separator { color: var(--accent); margin: 0 4px; }
+
+section:last-child { margin-bottom: 0; }
+section:last-child .job-block { margin-bottom: 0; }
+
+/* ===== PRINT ===== */
+@media print {
+@page { margin: 0; size: A4; }
+body { background: white; }
+.controls { display: none !important; }
+.page-container { box-shadow: none; margin: 0; }
+}
+</style>
 </head>
 <body> 
-    <div class="controls">
-        <button class="btn-control" onclick="window.print()">
-            <i class="fa-solid fa-file-pdf"></i>
-            <span>Save to PDF</span>
-        </button>
-    </div>
+<div class="controls">
+<button class="btn-control" onclick="window.print()">
+<i class="fa-solid fa-file-pdf"></i>
+<span>Save to PDF</span>
+</button>
+</div>
 
-    <div class="page-container">
-        <header>
-            <h1>TOMER SAHAR</h1>
-            <div class="roles">
-                Product Leader <span class="separator">|</span> CPO <span class="separator">|</span> COO <span class="separator">|</span> AI Strategy
-            </div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <a href="tel:+972547253314">054-7253314</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:t0547253314@gmail.com">t0547253314@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/tomer-sahar-product" target="_blank">linkedin.com/in/tomer-sahar-product</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-globe"></i>
-                    <a href="https://productexperts.co.il" target="_blank">productexperts.co.il</a>
-                </div>
-            </div>
-        </header>
+<div class="page-container">
+<header>
+<h1>TOMER SAHAR</h1>
+<div class="roles">
+                Product Leader <span class="separator">|</span> CPO <span class="separator">|</span> AI
+</div>
+<div class="contact-grid">
+<div class="contact-item">
+<i class="fa-solid fa-phone"></i>
+<a href="tel:+972547253314">054-7253314</a>
+</div>
+<div class="contact-item">
+<i class="fa-solid fa-envelope"></i>
+<a href="mailto:t0547253314@gmail.com">t0547253314@gmail.com</a>
+</div>
+<div class="contact-item">
+<i class="fa-brands fa-linkedin"></i>
+<a href="https://www.linkedin.com/in/tomer-sahar-product" target="_blank">linkedin.com/in/tomer-sahar-product</a>
+</div>
+<div class="contact-item">
+<i class="fa-solid fa-globe"></i>
+<a href="https://productexperts.co.il" target="_blank">productexperts.co.il</a>
+</div>
+</div>
+</header>
 
-        <main class="content">
-            <section>
-                <h2>Executive Summary</h2>
-                <div class="summary">
-                    Product Leader with 10+ years of experience driving high-scale growth, with a specialized focus on AI Transformation and Product Strategy. Proven track record in architecting [...]
-                </div>
-            </section>
+<main class="content">
+<section>
+<h2>Executive Summary</h2>
+<div class="summary">
+                    Product Leader with 10+ years of experience driving high-scale growth, with a specialized focus on AI Transformation and Product Strategy. Proven track record in architecting AI-driven business models, and scaling global operations.
+</div>
+</section>
 
-            <section>
-                <h2>Professional Experience</h2>
+<section>
+<h2>Professional Experience</h2>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">PRODUCT EXPERTS</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">CPO & AI Consultant</span>
-                        </div>
-                        <span class="date">2020 – Present</span>
-                    </div>
-                    <ul>
-                        <li><strong>AI Transformation:</strong> Hands-on production experience architecting and deploying enterprise-grade AI products, including RAG systems, N8N integrations, an[...]
-                        <li><strong>Product Leadership:</strong> Established and led the Product Department, overseeing Product Management, Advanced Product Strategy, and Data Analysis.</li>
-                        <li><strong>Executive Mentorship:</strong> Mentored dozens of Product Managers, from junior levels to C-suite executives, providing strategic consultancy on AI integration[...]
-                    </ul>
-                </div>
+<div class="job-block">
+<div class="job-header">
+<div>
+<span class="company-name">PRODUCT EXPERTS</span>
+<span class="separator">|</span>
+<span class="role-title">CPO & AI Consultant</span>
+</div>
+<span class="date">2020 – Present</span>
+</div>
+<ul>
+                        <li><strong>AI Transformation:</strong> Hands-on production experience architecting and deploying enterprise-grade AI products, including RAG systems, N8N integrations, and autonomous AI agents to automate complex workflows.</li>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">GLOBAL DEV EXPERTS</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">COO</span>
-                        </div>
-                        <span class="date">2023 – Present</span>
-                    </div>
-                    <ul>
-                        <li><strong>GTM Strategy & Global Scaling:</strong> Led the Go-To-Market strategy for European and American markets, establishing new revenue streams and expanding the com[...]
-                        <li><strong>Global Operations Management:</strong> Managing international teams across multiple time zones, coordinating large-scale delivery and cross-functional synchron[...]
-                        <li><strong>Operational Strategy:</strong> Designing and implementing scalable processes to support rapid growth and enhance organizational agility.</li>
-                    </ul>
-                </div>
+<li><strong>Product Leadership:</strong> Established and led the Product Department, overseeing Product Management, Advanced Product Strategy, and Data Analysis.</li>
+                        <li><strong>Executive Mentorship:</strong> Mentored dozens of Product Managers, from junior levels to C-suite executives, providing strategic consultancy on AI 
+</ul>
+</div>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">SCIPLAY</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">Product Manager (Live Ops)</span>
-                        </div>
-                        <span class="date">2016 – 2020</span>
-                    </div>
-                    <ul>
-                        <li><strong>Live Ops Leadership:</strong> Managed rapid content deployment and real-time app changes to drive user engagement and retention.</li>
-                        <li><strong>Revenue & Data:</strong> Focused on monetization and revenue growth using aggressive A/B testing and deep data analytics.</li>
-                    </ul>
-                </div>
+<div class="job-block">
+<div class="job-header">
+<div>
+<span class="company-name">GLOBAL DEV EXPERTS</span>
+<span class="separator">|</span>
+<span class="role-title">COO</span>
+</div>
+<span class="date">2023 – Present</span>
+</div>
+<ul>
+                        <li><strong>GTM Strategy & Global Scaling:</strong> Led the Go-To-Market strategy for European and American markets, establishing new revenue streams and expanding the company's global footprint, resulting in 3x revenue growth year-over-year.</li>
+                        <li><strong>Global Operations Management:</strong> Managing international teams across multiple time zones, coordinating large-scale delivery and cross-functional synchronization.</li>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">GINGER SOFTWARE</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">Product Manager (Early NLP & Predictive Algorithms)</span>
-                        </div>
-                        <span class="date">2015 – 2016</span>
-                    </div>
-                    <ul>
+<li><strong>Operational Strategy:</strong> Designing and implementing scalable processes to support rapid growth and enhance organizational agility.</li>
+</ul>
+</div>
+
+<div class="job-block">
+<div class="job-header">
+<div>
+<span class="company-name">SCIPLAY</span>
+<span class="separator">|</span>
+<span class="role-title">Product Manager (Live Ops)</span>
+</div>
+<span class="date">2016 – 2020</span>
+</div>
+<ul>
+<li><strong>Live Ops Leadership:</strong> Managed rapid content deployment and real-time app changes to drive user engagement and retention.</li>
+<li><strong>Revenue & Data:</strong> Focused on monetization and revenue growth using aggressive A/B testing and deep data analytics.</li>
+</ul>
+</div>
+
+<div class="job-block">
+<div class="job-header">
+<div>
+<span class="company-name">GINGER SOFTWARE</span>
+<span class="separator">|</span>
+<span class="role-title">Product Manager (Early NLP & Predictive Algorithms)</span>
+</div>
+<span class="date">2015 – 2016</span>
+</div>
+<ul>
+                        <li><strong>NLP Innovation:</strong> Developed advanced predictive text algorithms and smart keyboard features based on early Natural Language Processing (NLP) models.</li>
+                        <li><strong>Monetization:</strong> Implemented and optimized revenue models within the predictive keyboard ecosystem, leveraging user behavior data for product growth.</li>
                         <li><strong>NLP Innovation:</strong> Developed advanced predictive text algorithms and smart keyboard features based on early Natural Language Processing (NLP) models.[...]
                         <li><strong>Monetization:</strong> Implemented and optimized revenue models within the predictive keyboard ecosystem, leveraging user behavior data for product growth.[...]
-                    </ul>
-                </div>
-            </section>
+</ul>
+</div>
+</section>
 
-            <section>
-                <h2>Education</h2>
-                <div class="job-block">
-                    <span class="role-title">Bachelor of Arts (B.A.) in Management Information Systems (MIS)</span>
-                </div>
-            </section>
-        </main>
-    </div>
+<section>
+<h2>Education</h2>
+<div class="job-block">
+<span class="role-title">Bachelor of Arts (B.A.) in Management Information Systems (MIS)</span>
+</div>
+</section>
+</main>
+</div>
 </body>
 </html>
