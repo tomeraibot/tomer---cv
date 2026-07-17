@@ -1,0 +1,14 @@
+# The cv-app image is `FROM nginx:alpine; COPY . /usr/share/nginx/html`, i.e.
+# it serves the ENTIRE repo root publicly. Only the site itself should be
+# web-reachable — everything below is source/docs and must NOT be served.
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+README.md
+claude-design-prompt.md
+docs/
+api/
+**/__pycache__/
+**/*.pyc
