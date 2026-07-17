@@ -1,303 +1,635 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" data-palette="ocean">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tomer Sahar - Product Leader, CPO, AI">
-    <meta name="author" content="Tomer Sahar">
-    <title>Tomer Sahar - Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #3b82f6;
-            --text-main: #1e293b;
-            --text-light: #475569;
-            --bg-page: #f1f5f9;
-            --white: #ffffff;
-            --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
-            --transition-speed: 0.2s;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomer Sahar — Interactive CV · Don't read it. Interview it.</title>
+<meta name="description" content="The interactive CV of Tomer Sahar — product leader and AI strategy consultant. Read it, or interview it: an AI agent answers questions from verified CV facts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
+<style>
+/* ============================================================
+   DESIGN TOKENS — EDIT VISUALS HERE
+   Palettes: "ocean" (default) | "chromatic" | "sunset"
+   Card effect (SITE_CONFIG.cardEffect): "riso-offset" | "hard-edge" | "none"
+   ============================================================ */
+:root{
+  --display:'Syne',sans-serif;
+  --body:'Manrope',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --radius-card:22px;
+  --radius-pill:999px;
+  --shadow-sheet:0 -18px 60px rgba(0,0,0,.5);
+}
+[data-palette="ocean"]{
+  --bg:#050D1A; --bg-2:#0A1626; --ink:#071120; --paper:#F2F8FC;
+  --text:#E8F2FB; --text-dim:#9DB6CE; --hairline:#1C3552;
+  --c1a:#2DD4BF; --c1b:#0D9488;
+  --c2a:#4C7DFF; --c2b:#2447D6;
+  --c3a:#FF6E5E; --c3b:#E2402E;
+  --c4a:#FFC94D; --c4b:#EAA20B;
+  --accent:#4C7DFF; --accent-2:#2DD4BF; --signal:#FFC94D;
+}
+[data-palette="chromatic"]{
+  --bg:#120A1F; --bg-2:#1C0F2E; --ink:#180D26; --paper:#FFF9F0;
+  --text:#F4EFFA; --text-dim:#C9BCE6; --hairline:#3A2665;
+  --c1a:#FF8E33; --c1b:#FF6A00;
+  --c2a:#FF5C9E; --c2b:#F42179;
+  --c3a:#4BE6F0; --c3b:#17BDD4;
+  --c4a:#D6FF57; --c4b:#B3E81C;
+  --accent:#8A5CFF; --accent-2:#FF3E8A; --signal:#C8F53B;
+}
+[data-palette="sunset"]{
+  --bg:#160B14; --bg-2:#221019; --ink:#1E0F16; --paper:#FFF6EE;
+  --text:#FBEEE4; --text-dim:#D9B8A8; --hairline:#4A2434;
+  --c1a:#FFC24B; --c1b:#F59E0B;
+  --c2a:#FF7B54; --c2b:#F04E23;
+  --c3a:#FF4D8D; --c3b:#DB1F63;
+  --c4a:#A78BFA; --c4b:#7C3AED;
+  --accent:#FF7B54; --accent-2:#FF4D8D; --signal:#FFC24B;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.45;
-        }
+/* Card effect (ported from the Claude Design "Ocean" export) */
+body[data-card-effect="hard-edge"] .chapter{box-shadow:6px 6px 0 var(--ink)}
+body[data-card-effect="riso-offset"] .chapter{
+  box-shadow:3px 3px 0 color-mix(in srgb,var(--accent) 45%,transparent),
+             -2px -2px 0 color-mix(in srgb,var(--accent-2) 38%,transparent)}
 
-        .controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
+/* ============================================================
+   BASE
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
 
-        .btn-control {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all var(--transition-speed);
-            font-size: 0.9rem;
-        }
+/* ============================================================
+   LAYOUT — one codebase, two compositions
+   Mobile (<1024px): single column, hero on top, bottom-sheet agent.
+   Desktop (≥1024px): sticky identity rail + content column + drawer.
+   ============================================================ */
+.layout{max-width:760px;margin:0 auto;padding:0 20px}
+.rail{display:none}
+@media(min-width:1024px){
+  .layout{max-width:1240px;display:grid;grid-template-columns:340px minmax(0,1fr);gap:56px;padding:0 40px}
+  .hero{display:none}
+  .rail{display:flex;flex-direction:column;position:sticky;top:0;height:100vh;padding:64px 0 40px}
+}
 
-        .btn-control:hover { 
-            transform: translateY(-2px); 
-            background: #1e293b;
-        }
+/* RAIL (desktop identity panel) */
+.rail .eyebrow{margin-bottom:14px}
+.rail h1{font-size:34px}
+.rail .lede{font-size:14px;margin-top:14px}
+.rail-nav{margin-top:38px;display:flex;flex-direction:column;gap:4px}
+.rail-nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;
+  text-decoration:none;color:var(--text-dim);font-weight:600;font-size:13.5px;transition:all .18s}
+.rail-nav a .swatch{width:12px;height:12px;border-radius:4px;flex-shrink:0;transition:transform .18s}
+.rail-nav a .yrs{margin-left:auto;font-family:var(--mono);font-size:9.5px;opacity:.6}
+.rail-nav a:hover{color:var(--text);background:var(--bg-2)}
+.rail-nav a.active{color:var(--text);background:var(--bg-2)}
+.rail-nav a.active .swatch{transform:scale(1.35)}
+.rail-nav a.hoodlink .swatch{background:conic-gradient(var(--c1b),var(--c2b),var(--c3b),var(--c4a),var(--c1b))}
+.rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.rail-status{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.rail-status .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);animation:pulse 1.8s infinite}
+.rail-links{display:flex;gap:14px;flex-wrap:wrap}
+.rail-links a{font-size:12.5px;color:var(--text-dim);text-decoration:none;font-weight:600}
+.rail-links a:hover{color:var(--signal)}
 
-        .page-container {
-            width: 210mm;
-            margin: 0 auto;
-            background: var(--white);
-            box-shadow: var(--shadow-lg);
-        }
+/* HERO (mobile) */
+.hero{padding:84px 0 44px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-2);margin-bottom:16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.02em}
+h1 .w1{color:var(--c1a)} h1 .w2{color:var(--c2a)} h1 .w3{color:var(--c4a)}
+.lede{margin:18px 0 0;color:var(--text-dim);font-size:clamp(14px,2vw,17px);line-height:1.65;font-weight:500;max-width:44ch}
 
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 28px 36px 22px;
-        }
+/* CONTENT COLUMN */
+.content{min-width:0}
+@media(min-width:1024px){.content{padding-top:64px}}
 
-        h1 {
-            font-size: 2.3rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-            letter-spacing: -0.02em;
-        }
+/* CHAPTERS */
+.chapters{padding:14px 0 30px;display:flex;flex-direction:column;gap:18px}
+@media(min-width:1024px){.chapters{padding-top:0;gap:24px}}
+.chapter{border-radius:var(--radius-card);padding:24px 22px 20px;color:var(--ink);position:relative;overflow:hidden;scroll-margin-top:24px}
+.chapter[data-hue="1"]{background:linear-gradient(160deg,var(--c1a),var(--c1b))}
+.chapter[data-hue="2"]{background:linear-gradient(160deg,var(--c2a),var(--c2b))}
+.chapter[data-hue="3"]{background:linear-gradient(160deg,var(--c3a),var(--c3b))}
+.chapter[data-hue="4"]{background:linear-gradient(160deg,var(--c4a),var(--c4b))}
+@media(min-width:1024px){.chapter{padding:30px 28px 24px}}
+.ch-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:4px}
+.years{font-family:var(--mono);font-size:10px;font-weight:600;background:rgba(5,10,20,.85);color:#fff;padding:5px 11px;border-radius:var(--radius-pill);letter-spacing:.05em;white-space:nowrap}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,3.4vw,28px);letter-spacing:-.01em;line-height:1.05}
+.role{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin:5px 0 12px;opacity:.75}
+.summary{font-size:clamp(13.5px,1.8vw,15px);line-height:1.62;font-weight:600;max-width:62ch}
 
-        .roles {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
+.more{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1)}
+.chapter.expanded .more{max-height:1400px}
+.more-inner{padding-top:16px;display:flex;flex-direction:column;gap:12px}
+/* Desktop: depth blocks sit side by side — real screen real estate use */
+@media(min-width:1024px){
+  .more-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:stretch}
+}
+.block{background:rgba(250,252,255,.93);border-radius:14px;padding:15px 16px}
+.block h3{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;opacity:.6}
+.block p{font-size:13px;line-height:1.62;font-weight:500}
+.block ul{list-style:none;font-size:13px;line-height:1.6;font-weight:500}
+.block li{padding-left:16px;position:relative;margin-bottom:6px}
+.block li::before{content:"→";position:absolute;left:0;font-weight:800}
 
-        .roles .separator { color: var(--accent); margin: 0 5px; }
+.ch-actions{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap;align-items:center}
+.expand-btn{font-family:var(--display);font-size:11.5px;font-weight:700;background:var(--ink);color:#fff;
+  border:none;border-radius:var(--radius-pill);padding:11px 18px;cursor:pointer;letter-spacing:.02em}
+.chapter.expanded .expand-btn .lbl-open{display:none}
+.chapter:not(.expanded) .expand-btn .lbl-close{display:none}
+.chip{font-family:var(--body);font-size:12px;font-weight:800;background:rgba(250,252,255,.9);border:none;border-radius:var(--radius-pill);
+  padding:11px 16px;cursor:pointer;color:var(--ink);transition:transform .12s}
+.chip:hover{transform:translateY(-1px)}
+.chip:active,.chip.asked{transform:scale(.96);outline:2px solid var(--ink)}
 
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 24px;
-            font-size: 0.82rem;
-        }
+/* UNDER THE HOOD */
+.hood-cta-zone{padding:26px 0 40px;display:flex;flex-direction:column;align-items:center;gap:14px;scroll-margin-top:24px}
+.hood-tease{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim)}
+.hood-btn{position:relative;border:none;background:var(--bg-2);color:var(--text);cursor:pointer;
+  font-family:var(--display);font-weight:800;font-size:clamp(15px,2.4vw,19px);letter-spacing:.01em;
+  padding:20px 34px;border-radius:var(--radius-pill);isolation:isolate}
+.hood-btn::before{content:"";position:absolute;inset:-3px;border-radius:inherit;z-index:-1;
+  background:conic-gradient(from var(--spin,0deg),var(--c1b),var(--c2b),var(--c3b),var(--c4a),var(--c1b));
+  animation:spin 3.5s linear infinite}
+@property --spin{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes spin{to{--spin:360deg}}
+.hood-btn .sub{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-dim);margin-top:5px}
+.hood-btn:hover{background:var(--ink)}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: #cbd5e1;
-        }
-        
-        .contact-item a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
-        .contact-item a:hover { border-color: var(--accent); color: white; }
+.hood-panel{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.4,0,.2,1)}
+.hood-panel.open{max-height:3200px}
+.hood-inner{border:1px solid var(--hairline);border-radius:var(--radius-card);background:var(--bg-2);
+  padding:26px 22px;margin-bottom:44px}
+@media(min-width:1024px){.hood-inner{padding:34px 32px}}
+.hood-inner h2{color:var(--text);font-size:clamp(20px,3vw,26px);margin-bottom:6px}
+.hood-inner .hood-sub{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);margin-bottom:20px}
+.hood-sec{margin-bottom:22px}
+.hood-sec h3{font-family:var(--display);font-weight:700;font-size:15px;color:var(--signal);margin-bottom:8px}
+.hood-sec p{font-size:13.5px;color:var(--text-dim);font-weight:500;max-width:64ch}
+.hood-sec ul{list-style:none;font-size:13.5px;color:var(--text-dim);font-weight:500}
+.hood-sec li{padding-left:18px;position:relative;margin-bottom:7px}
+.hood-sec li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+.diagram{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--text-dim);background:var(--bg);
+  border:1px solid var(--hairline);border-radius:12px;padding:16px;overflow-x:auto;white-space:pre}
+.diagram b{color:var(--signal);font-weight:600}
+.stack-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tag{font-family:var(--mono);font-size:10.5px;font-weight:600;border:1px solid var(--hairline);
+  color:var(--text-dim);padding:6px 12px;border-radius:var(--radius-pill)}
 
-        .content { 
-            padding: 26px 36px 20px; 
-        }
+/* FOOTER (mobile-focused; desktop has the rail) */
+footer{border-top:1px solid var(--hairline);padding:34px 0 120px}
+footer .f-title{font-family:var(--display);font-weight:800;font-size:20px;margin-bottom:8px}
+footer p, footer a{font-size:13.5px;color:var(--text-dim);font-weight:500;text-decoration:none}
+footer a:hover{color:var(--signal)}
+.f-links{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap}
+.f-note{font-family:var(--mono);font-size:10px;margin-top:22px;color:var(--text-dim);opacity:.7}
+@media(min-width:1024px){footer{padding-bottom:60px}}
 
-        section { 
-            margin-bottom: 18px; 
-        }
+/* AGENT FAB */
+.agent-fab{position:fixed;bottom:22px;right:18px;z-index:60;display:flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:var(--radius-pill);
+  padding:15px 22px;cursor:pointer;box-shadow:0 10px 32px rgba(0,0,0,.45);
+  font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.02em}
+@media(min-width:1024px){.agent-fab{bottom:32px;right:32px}}
+.agent-fab .dot{width:10px;height:10px;border-radius:50%;background:var(--signal);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--signal) 55%,transparent)}50%{box-shadow:0 0 0 9px transparent}}
 
-        h2 {
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-        }
+/* AGENT SHEET / DRAWER */
+.scrim{position:fixed;inset:0;background:rgba(2,5,12,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:65}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:70;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;
+  transition:transform .45s cubic-bezier(.32,.72,0,1)}
+@media(max-width:1023px){
+  .sheet{left:0;right:0;bottom:0;height:66%;border-radius:28px 28px 0 0;box-shadow:var(--shadow-sheet);transform:translateY(112%)}
+  .sheet.open{transform:translateY(0)}
+}
+@media(min-width:1024px){
+  .sheet{top:0;right:0;bottom:0;width:440px;border-radius:0;box-shadow:-24px 0 60px rgba(0,0,0,.4);transform:translateX(110%)}
+  .sheet.open{transform:translateX(0)}
+  .grabber{display:none}
+}
+.grabber{width:46px;height:6px;border-radius:var(--radius-pill);background:#C5D5E4;margin:12px auto 6px;flex-shrink:0}
+.sheet-head{padding:14px 20px;border-bottom:1px solid #DCE7F1;display:flex;justify-content:space-between;align-items:center}
+.sheet-title{font-family:var(--display);font-weight:800;font-size:16px}
+.sheet-ctx{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:3px}
+.close{background:none;border:1.5px solid #C5D5E4;border-radius:50%;width:32px;height:32px;cursor:pointer;color:#5E7891;font-weight:700}
+.sheet-thread{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:13px}
+.msg{max-width:90%;font-size:13.5px;line-height:1.62;font-weight:500}
+.msg.user{align-self:flex-end;background:var(--ink);color:#fff;padding:11px 15px;border-radius:16px 16px 4px 16px;font-weight:600}
+.msg.agent .who{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:5px}
+.msg.agent .bubble{background:#fff;border:1.5px solid #DCE7F1;padding:13px 15px;border-radius:4px 16px 16px 16px}
+.typing{display:inline-flex;gap:4px}
+.typing span{width:6px;height:6px;border-radius:50%;background:#8AA3BC;animation:ty 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes ty{40%{transform:translateY(-4px)}}
+.sheet-composer{border-top:1px solid #DCE7F1;padding:12px 16px calc(14px + env(safe-area-inset-bottom));display:flex;gap:8px}
+.sheet-composer input{flex:1;border:1.5px solid #C5D5E4;border-radius:var(--radius-pill);padding:12px 16px;font-size:13.5px;font-family:var(--body);font-weight:600;background:#fff;color:var(--ink)}
+.sheet-composer input:focus{outline:none;border-color:var(--accent)}
+.sheet-composer .send{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:var(--radius-pill);padding:0 18px;font-weight:800;cursor:pointer}
 
-        .summary {
-            color: var(--text-light);
-            text-align: justify;
-            line-height: 1.5;
-            font-size: 0.85rem;
-        }
-
-        .job-block {
-            margin-bottom: 15px;
-            page-break-inside: avoid;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 4px;
-        }
-
-        .company-name { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.86rem; }
-        .role-title { font-weight: 600; color: var(--text-main); font-size: 0.86rem; }
-        .date { font-size: 0.8rem; color: var(--text-light); font-weight: 500; white-space: nowrap; }
-
-        ul { list-style: none; padding: 0; }
-        
-        li {
-            position: relative;
-            margin-bottom: 3px;
-            color: var(--text-light);
-            font-size: 0.82rem;
-            padding-left: 15px;
-            line-height: 1.45;
-        }
-
-        li::before { content: "▪"; position: absolute; left: 0; color: var(--accent); }
-        li strong { color: var(--text-main); font-weight: 600; }
-
-        .separator { color: var(--accent); margin: 0 4px; }
-
-        section:last-child { margin-bottom: 0; }
-        section:last-child .job-block { margin-bottom: 0; }
-
-        /* ===== PRINT ===== */
-        @media print {
-            @page { margin: 0; size: A4; }
-            body { background: white; }
-            .controls { display: none !important; }
-            .page-container { box-shadow: none; margin: 0; }
-        }
-    </style>
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
 </head>
-<body> 
-    <div class="controls">
-        <button class="btn-control" onclick="window.print()">
-            <i class="fa-solid fa-file-pdf"></i>
-            <span>Save to PDF</span>
-        </button>
+<body>
+
+<div class="layout">
+
+  <!-- DESKTOP IDENTITY RAIL (hidden on mobile) -->
+  <aside class="rail" aria-label="Profile and navigation">
+    <div class="eyebrow" id="railEyebrow"></div>
+    <h1 id="railTitle"></h1>
+    <p class="lede" id="railLede"></p>
+    <nav class="rail-nav" id="railNav" aria-label="Chapters"></nav>
+    <div class="rail-foot">
+      <div class="rail-status"><span class="dot"></span><span>Agent online · ask anything</span></div>
+      <div class="rail-links" id="railLinks"></div>
     </div>
+  </aside>
 
-    <div class="page-container">
-        <header>
-            <h1>TOMER SAHAR</h1>
-            <div class="roles">
-                 Product Leader <span class="separator">|</span> CPO <span class="separator">|</span> AI
-            </div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <a href="tel:+972547253314">054-7253314</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:t0547253314@gmail.com">t0547253314@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/tomer-sahar-product" target="_blank">linkedin.com/in/tomer-sahar-product</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-globe"></i>
-                    <a href="https://productexperts.co.il" target="_blank">productexperts.co.il</a>
-                </div>
-            </div>
-        </header>
+  <div class="content">
+    <!-- MOBILE HERO (hidden on desktop) -->
+    <header class="hero">
+      <div class="eyebrow" id="heroEyebrow"></div>
+      <h1 id="heroTitle"></h1>
+      <p class="lede" id="heroLede"></p>
+    </header>
 
-        <main class="content">
-            <section>
-                <h2>Executive Summary</h2>
-                <div class="summary">
-                    Product Leader with 10+ years of experience driving high-scale growth, with a specialized focus on AI Transformation and Product Strategy. Proven track record in architecting AI-driven business models, and scaling global operations.
-                </div>
-            </section>
+    <section class="chapters" id="chapters" aria-label="Career chapters"></section>
 
-            <section>
-                <h2>Professional Experience</h2>
+    <section class="hood-cta-zone" id="hood">
+      <div class="hood-tease">Curious how this CV works?</div>
+      <button class="hood-btn" id="hoodBtn" aria-expanded="false" aria-controls="hoodPanel">
+        ⚙ Under the Hood
+        <span class="sub">Technical deep-dive · for the advanced reader</span>
+      </button>
+    </section>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">PRODUCT EXPERTS</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">CPO & AI Consultant</span>
-                        </div>
-                        <span class="date">2020 – Present</span>
-                    </div>
-                    <ul>
-                        <li><strong>AI Transformation:</strong> Hands-on production experience architecting and deploying enterprise-grade AI products, including RAG systems, N8N integrations, and autonomous AI agents to automate complex workflows.</li>
-                        <li><strong>Product Leadership:</strong> Established and led the Product Department, overseeing Product Management, Advanced Product Strategy, and Data Analysis.</li>
-                        <li><strong>Executive Mentorship:</strong> Mentored dozens of Product Managers, from junior levels to C-suite executives, providing strategic consultancy on AI integration for B2B clients.</li>
-                    </ul>
-                </div>
+    <section class="hood-panel" id="hoodPanel" aria-label="How this CV works"></section>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">GLOBAL DEV EXPERTS</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">COO</span>
-                        </div>
-                        <span class="date">2023 – Present</span>
-                    </div>
-                    <ul>
-                        <li><strong>GTM Strategy & Global Scaling:</strong> Led the Go-To-Market strategy for European and American markets, establishing new revenue streams and expanding the company's global footprint, resulting in 3x revenue growth year-over-year.</li>
-                        <li><strong>Global Operations Management:</strong> Managing international teams across multiple time zones, coordinating large-scale delivery and cross-functional synchronization.</li>
-                        <li><strong>Operational Strategy:</strong> Designing and implementing scalable processes to support rapid growth and enhance organizational agility.</li>
-                    </ul>
-                </div>
+    <footer id="footer"></footer>
+  </div>
+</div>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">SCIPLAY</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">Product Manager (Live Ops)</span>
-                        </div>
-                        <span class="date">2016 – 2020</span>
-                    </div>
-                    <ul>
-                        <li><strong>Live Ops Leadership:</strong> Managed rapid content deployment and real-time app changes to drive user engagement and retention.</li>
-                        <li><strong>Revenue & Data:</strong> Focused on monetization and revenue growth using aggressive A/B testing and deep data analytics.</li>
-                    </ul>
-                </div>
+<button class="agent-fab" id="fab" aria-haspopup="dialog"><span class="dot"></span><span id="fabLabel">Ask me</span></button>
 
-                <div class="job-block">
-                    <div class="job-header">
-                        <div>
-                            <span class="company-name">GINGER SOFTWARE</span>
-                            <span class="separator">|</span>
-                            <span class="role-title">Product Manager (Early NLP & Predictive Algorithms)</span>
-                        </div>
-                        <span class="date">2015 – 2016</span>
-                    </div>
-                    <ul>
-                        <li><strong>NLP Innovation:</strong> Developed advanced predictive text algorithms and smart keyboard features based on early Natural Language Processing (NLP) models.</li>
-                        <li><strong>Monetization:</strong> Implemented and optimized revenue models within the predictive keyboard ecosystem, leveraging user behavior data for product growth.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h2>Education</h2>
-                <div class="job-block">
-                    <span class="role-title">Bachelor of Arts (B.A.) in Management Information Systems (MIS)</span>
-                </div>
-            </section>
-        </main>
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" role="dialog" aria-label="CV agent">
+  <div class="grabber"></div>
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-title" id="sheetTitle"></div>
+      <div class="sheet-ctx" id="ctx"></div>
     </div>
+    <button class="close" id="close" aria-label="Close agent">✕</button>
+  </div>
+  <div class="sheet-thread" id="thread"></div>
+  <div class="sheet-composer">
+    <input type="text" id="composerInput" placeholder="" aria-label="Ask the agent">
+    <button class="send" id="sendBtn">ASK</button>
+  </div>
+</aside>
+
+<script>
+/* ============================================================
+   SITE CONFIG — EDIT BEHAVIOR HERE
+   ============================================================ */
+const SITE_CONFIG = {
+  agent: {
+    mode: "demo",                    // "demo" | "live"
+    endpoint: "/api/interview",
+    name: "The Interview",
+    greeting: "Every chapter here has more depth than what's on the surface. Tap a question on any chapter — or ask your own. I answer from verified CV facts only.",
+    demoFreeTextReply: "In this preview I only answer the prepared questions — the live version connects to a RAG pipeline over Tomer's verified CV facts and can answer anything. Tap ⚙ Under the Hood to see how."
+  },
+  palette: "ocean",                  // ocean | chromatic | sunset
+  cardEffect: "riso-offset"          // riso-offset | hard-edge | none
+};
+
+/* ============================================================
+   CONTENT — EDIT ALL CV TEXT HERE  ([EDIT] = verify before launch)
+   ============================================================ */
+const CONTENT = {
+  hero: {
+    eyebrow: "Tomer Sahar / Curriculum Vitae",
+    title: 'One career.<br><span class="w1">Four</span> <span class="w2">bold</span> <span class="w3">chapters.</span>',
+    lede: "Each chapter has its own color, its own depth, and its own questions. Read the summary — or open it up and interview it."
+  },
+
+  chapters: [
+    {
+      id: "product-experts", hue: 1,
+      title: "Product Experts", years: "2023—NOW",
+      role: "Founder & CPO · AI Strategy",
+      summary: "Founder-led consultancy taking organizations from AI experimentation to production — strategy, agentic architectures, and executive training.",
+      more: {
+        scope: "End-to-end ownership: from C-level AI roadmaps through hands-on architecture of agent platforms — dispatchers, approval gates, RAG pipelines, CI-gated autonomous workflows. Clients span marketing tech, HR tech, and enterprise training.",
+        highlights: [
+          "Operates a self-hosted production agent platform he built himself — the advice comes from running the real thing",
+          "Designed and delivered advanced agentic-AI training programs for enterprise leadership teams",
+          "Authored multi-month AI transformation roadmaps adopted at the executive level"
+        ],
+        story: "After a decade of building products, the consultancy was the answer to one question: how do you make AI adoption real rather than theatrical? The answer — build it yourself first, then teach it."
+      },
+      questions: [
+        { q: "Does he build, or just advise?",
+          a: "Both — and that's the point. He runs a self-hosted agent platform he built himself: dispatcher, approval gates, RAG pipeline, CI-gated autonomous PRs. The advice comes from operating the real thing in production." },
+        { q: "Who are his clients?",
+          a: "Organizations moving from AI experiments to production — executive teams needing an AI roadmap, companies building their first agent platforms. Recent work spans marketing tech, HR tech, and enterprise training." }
+      ]
+    },
+    {
+      id: "global-dev-experts", hue: 2,
+      title: "Global Dev Experts", years: "2022—NOW",
+      role: "COO · Operations at Scale",
+      summary: "Operational leadership across delivery, hiring and process — the operator's counterweight to the strategist's role.",
+      more: {
+        scope: "Owns operational execution: delivery pipelines, team scaling, hiring frameworks, and the processes that let a services organization grow without breaking. Runs in parallel with the CPO role — strategy and operations informing each other daily.",
+        highlights: [
+          "Built delivery and hiring processes that scale across distributed teams",
+          "Brings the operator's discipline into every AI strategy engagement — plans that survive contact with reality"
+        ],
+        story: "Strategists who never operate write beautiful plans that die on contact. Keeping both muscles active — CPO and COO — is deliberate."
+      },
+      questions: [
+        { q: "How do the CPO and COO roles work together?",
+          a: "They're deliberately complementary: Product Experts is where strategy and AI architecture happen; Global Dev Experts is where operational scale is executed. Each role keeps the other honest." }
+      ]
+    },
+    {
+      id: "sciplay", hue: 3,
+      title: "SciPlay", years: "2018—22",
+      role: "Product Leadership · Live-Ops Gaming",
+      summary: "Live-ops product strategy for social casino titles at scale — economy design, retention systems, and data-driven feature cycles across millions of daily players.",
+      more: {
+        scope: "Led product for live titles where every change shipped directly into a running economy with millions of DAU. Owned economy balance, retention feature cycles, and the analytics loop that decided what shipped next.",
+        highlights: [
+          "Built cohort-gated rollout framework with automatic rollback triggers tied to spend anomalies",
+          "Retention-driven feature cycles lifted D30 retention across core portfolio titles",
+          "Cut revenue-impacting pricing incidents to near zero"
+        ],
+        story: "Live-ops was agentic thinking before agents existed: systems that observe behavior, decide, act, and get corrected by humans. The approval gates in his AI architectures today are a live-ops instinct."
+      },
+      questions: [
+        { q: "What was the hardest challenge at SciPlay?",
+          a: "Managing a live economy where every pricing change shipped straight into real human behavior — no staging environment for people. The guardrail framework he built there is the direct ancestor of the approval gates in his agent platforms today." }
+      ]
+    },
+    {
+      id: "ginger", hue: 4,
+      title: "Ginger Software", years: "2013—18",
+      role: "Product · Natural Language Processing",
+      summary: "Shipped production NLP writing products for consumers — grammar correction, rephrasing, language models in the wild — a decade before it looked easy.",
+      more: {
+        scope: "Product ownership of consumer-facing NLP: correction quality, rephrasing flows, and the brutal error-analysis loop of pre-transformer language technology, where every accuracy point was earned by hand.",
+        highlights: [
+          "Shipped NLP to mass consumer audiences years before \"AI product manager\" was a job title",
+          "Developed the failure-case-first design instinct that now shapes every AI reliability decision he makes"
+        ],
+        story: "Ginger taught the asymmetry of trust: one wrong correction costs more than ten right ones earn. Most post-ChatGPT product people never learned where language models break. He did — the hard way."
+      },
+      questions: [
+        { q: "What did pre-LLM NLP teach him?",
+          a: "That user trust in AI is asymmetric: one wrong correction costs more than ten right ones earn. He designs for the failure case first — an instinct that now shapes every approval gate and confidence threshold in his agent architectures." }
+      ]
+    }
+  ],
+
+  underHood: {
+    title: "Under the Hood",
+    sub: "How this CV actually works — and why it exists",
+    sections: [
+      {
+        h: "Why an agent at all?",
+        p: "Because a CV is a claim, and this site is the proof. Tomer's professional thesis is that AI agents should be useful, governed, and grounded in verified facts. Instead of writing that on a slide, this CV demonstrates it: the agent you're talking to runs on the same self-hosted platform he builds for clients."
+      },
+      {
+        h: "The architecture",
+        diagram:
+"  You (browser)\n" +
+"      │  question + chapter context\n" +
+"      ▼\n" +
+"  <b>Static site</b> (this single HTML file — no keys, no secrets)\n" +
+"      │  POST /api/interview\n" +
+"      ▼\n" +
+"  <b>FastAPI proxy</b> (Dockerized, on Tomer's own VPS)\n" +
+"      │  holds the API key server-side · rate-limits · logs\n" +
+"      ▼\n" +
+"  <b>LLM + RAG</b>\n" +
+"      ├── Claude — generates the answer\n" +
+"      └── Qdrant vector DB — retrieves <b>verified CV facts</b>\n" +
+"           (embedded with a local Ollama model)\n"
+      },
+      {
+        h: "The guardrails",
+        list: [
+          "Grounded answers only: the agent's system prompt is built from a verified facts collection — it declines to speculate beyond the CV.",
+          "No client-side secrets: the browser never sees an API key; everything sensitive lives behind the proxy.",
+          "Human-in-the-loop by design: on the wider platform, agent-authored changes flow through fork → PR → CI → human merge. The same philosophy shapes this agent's conservative behavior.",
+          "Bilingual: ask in Hebrew or English — the agent answers in your language."
+        ]
+      },
+      {
+        h: "The stack",
+        tags: ["Single-file HTML/CSS/JS", "FastAPI", "Docker", "Nginx", "Claude API", "Qdrant", "Ollama embeddings", "Self-hosted VPS", "CI-gated deploys"]
+      },
+      {
+        h: "The honest part",
+        p: "This page you're reading was itself designed and built in collaboration with Claude — concept, mockups, code, and documentation. Using the tools you advocate for, on yourself, is the only credible way to advocate for them."
+      }
+    ]
+  },
+
+  footer: {
+    title: "Let's talk.",
+    text: "Product leadership, AI strategy, agentic architectures — or just to argue about approval gates.",
+    links: [
+      { label: "cv.tomersahar.com", href: "https://cv.tomersahar.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/tomer-sahar-product" },
+      { label: "Email", href: "mailto:t0547253314@gmail.com" }
+    ],
+    note: "© 2026 Tomer Sahar · Built with Claude · Runs on his own infrastructure"
+  }
+};
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+document.documentElement.dataset.palette = SITE_CONFIG.palette;
+document.body.dataset.cardEffect = SITE_CONFIG.cardEffect;
+
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// Hero (mobile) + Rail (desktop) — same content, two compositions
+$('heroEyebrow').textContent = CONTENT.hero.eyebrow;
+$('heroTitle').innerHTML = CONTENT.hero.title;
+$('heroLede').textContent = CONTENT.hero.lede;
+$('railEyebrow').textContent = CONTENT.hero.eyebrow;
+$('railTitle').innerHTML = CONTENT.hero.title;
+$('railLede').textContent = CONTENT.hero.lede;
+
+// Rail navigation (desktop): chapter swatches + Under the Hood
+$('railNav').innerHTML = CONTENT.chapters.map(ch => `
+  <a href="#${ch.id}" data-target="${ch.id}">
+    <span class="swatch" style="background:linear-gradient(135deg,var(--c${ch.hue}a),var(--c${ch.hue}b))"></span>
+    <span>${esc(ch.title)}</span><span class="yrs">${esc(ch.years)}</span>
+  </a>`).join('') +
+  `<a href="#hood" data-target="hood" class="hoodlink"><span class="swatch"></span><span>Under the Hood</span></a>`;
+$('railLinks').innerHTML = CONTENT.footer.links.map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join('');
+
+// Chapters
+$('chapters').innerHTML = CONTENT.chapters.map(ch => `
+  <article class="chapter" data-hue="${ch.hue}" id="${ch.id}">
+    <div class="ch-top"><h2>${esc(ch.title)}</h2><span class="years">${esc(ch.years)}</span></div>
+    <div class="role">${esc(ch.role)}</div>
+    <p class="summary">${esc(ch.summary)}</p>
+    <div class="more"><div class="more-inner">
+      <div class="block"><h3>Role &amp; Scope</h3><p>${esc(ch.more.scope)}</p></div>
+      <div class="block"><h3>Highlights</h3><ul>${ch.more.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul></div>
+      ${ch.more.story ? `<div class="block"><h3>The Story</h3><p>${esc(ch.more.story)}</p></div>` : ''}
+    </div></div>
+    <div class="ch-actions">
+      <button class="expand-btn" aria-expanded="false"><span class="lbl-open">+ More</span><span class="lbl-close">− Less</span></button>
+      ${ch.questions.map((qa,i)=>`<button class="chip" data-ch="${ch.id}" data-i="${i}">${esc(qa.q)}</button>`).join('')}
+    </div>
+  </article>`).join('');
+
+// Under the Hood
+$('hoodPanel').innerHTML = `<div class="hood-inner">
+  <h2>${esc(CONTENT.underHood.title)}</h2>
+  <div class="hood-sub">${esc(CONTENT.underHood.sub)}</div>
+  ${CONTENT.underHood.sections.map(s => `
+    <div class="hood-sec">
+      <h3>${esc(s.h)}</h3>
+      ${s.p ? `<p>${esc(s.p)}</p>` : ''}
+      ${s.diagram ? `<div class="diagram">${s.diagram}</div>` : ''}
+      ${s.list ? `<ul>${s.list.map(li=>`<li>${esc(li)}</li>`).join('')}</ul>` : ''}
+      ${s.tags ? `<div class="stack-tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+    </div>`).join('')}
+</div>`;
+
+// Footer
+$('footer').innerHTML = `
+  <div class="f-title">${esc(CONTENT.footer.title)}</div>
+  <p>${esc(CONTENT.footer.text)}</p>
+  <div class="f-links">${CONTENT.footer.links.map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join('')}</div>
+  <div class="f-note">${esc(CONTENT.footer.note)}</div>`;
+
+// Agent chrome
+$('sheetTitle').textContent = SITE_CONFIG.agent.name;
+$('fabLabel').textContent = 'Ask me';
+$('composerInput').placeholder = 'Ask about Tomer…';
+$('ctx').textContent = 'Context: Full CV';
+
+/* ============================================================
+   BEHAVIOR
+   ============================================================ */
+const sheet=$('sheet'), scrim=$('scrim'), thread=$('thread'), ctx=$('ctx');
+const history=[];
+
+function addMsg(role, html){
+  const el=document.createElement('div');
+  el.className='msg '+role;
+  el.innerHTML = role==='user' ? esc(html)
+    : `<div class="who">CV Agent</div><div class="bubble">${html}</div>`;
+  thread.appendChild(el); thread.scrollTop=thread.scrollHeight;
+  return el;
+}
+function openSheet(){sheet.classList.add('open');scrim.classList.add('on')}
+function closeSheet(){sheet.classList.remove('open');scrim.classList.remove('on')}
+
+addMsg('agent', esc(SITE_CONFIG.agent.greeting));
+
+$('fab').addEventListener('click', openSheet);
+$('close').addEventListener('click', closeSheet);
+scrim.addEventListener('click', closeSheet);
+document.addEventListener('keydown', e=>{if(e.key==='Escape')closeSheet()});
+
+// Expand / collapse chapters
+document.querySelectorAll('.expand-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const ch=btn.closest('.chapter');
+    const open=ch.classList.toggle('expanded');
+    btn.setAttribute('aria-expanded', open);
+  });
+});
+
+// Question chips → contextual agent
+document.querySelectorAll('.chip').forEach(chBtn=>{
+  chBtn.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('asked'));
+    chBtn.classList.add('asked');
+    const chapter=CONTENT.chapters.find(c=>c.id===chBtn.dataset.ch);
+    const qa=chapter.questions[+chBtn.dataset.i];
+    ctx.textContent='Context: '+chapter.title;
+    askAgent(qa.q, chapter, qa.a);
+  });
+});
+
+// Free text
+function submitFreeText(){
+  const input=$('composerInput'); const q=input.value.trim();
+  if(!q) return; input.value='';
+  askAgent(q, null, null);
+}
+$('sendBtn').addEventListener('click', submitFreeText);
+$('composerInput').addEventListener('keydown', e=>{if(e.key==='Enter')submitFreeText()});
+
+async function askAgent(question, chapter, cannedAnswer){
+  openSheet();
+  addMsg('user', question);
+  const t=addMsg('agent','<span class="typing"><span></span><span></span><span></span></span>');
+  history.push({role:'user', content:question});
+
+  let answer;
+  if(SITE_CONFIG.agent.mode==='demo'){
+    await new Promise(r=>setTimeout(r,700));
+    answer = cannedAnswer || SITE_CONFIG.agent.demoFreeTextReply;
+  } else {
+    try{
+      const res=await fetch(SITE_CONFIG.agent.endpoint,{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({question, context:chapter?chapter.id:'full-cv', history:history.slice(-10)})
+      });
+      const data=await res.json();
+      answer=data.answer || "Something went sideways on my end — try again in a moment.";
+    }catch(e){
+      answer="I can't reach the agent backend right now. The static CV above still tells the whole story — or try again shortly.";
+    }
+  }
+  history.push({role:'assistant', content:answer});
+  t.querySelector('.bubble').innerHTML=esc(answer);
+  thread.scrollTop=thread.scrollHeight;
+}
+
+// Under the Hood toggle
+$('hoodBtn').addEventListener('click', ()=>{
+  const panel=$('hoodPanel');
+  const open=panel.classList.toggle('open');
+  $('hoodBtn').setAttribute('aria-expanded', open);
+  if(open) setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}),150);
+});
+
+// Desktop rail scrollspy
+const navLinks=[...document.querySelectorAll('.rail-nav a')];
+if('IntersectionObserver' in window && navLinks.length){
+  const targets=navLinks.map(a=>document.getElementById(a.dataset.target)).filter(Boolean);
+  const spy=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        navLinks.forEach(a=>a.classList.toggle('active', a.dataset.target===en.target.id));
+      }
+    });
+  },{rootMargin:'-30% 0px -55% 0px'});
+  targets.forEach(t=>spy.observe(t));
+}
+</script>
 </body>
 </html>

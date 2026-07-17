@@ -1,12 +1,11 @@
-version: '3.8'
 services:
   cv-app:
-    build: . # במקום image, אנחנו אומרים לו לבנות מה-Dockerfile
+    build: .            # build from the local Dockerfile (nginx serving index.html)
     container_name: cv-app
     restart: always
     networks:
-      - openclaw_default
+      - ai_stack_git_edge   # the live edge network cloudflared reaches; NEVER openclaw_default (dead — caused the 2026-07-11 cv 502)
 
 networks:
-  openclaw_default:
+  ai_stack_git_edge:
     external: true
