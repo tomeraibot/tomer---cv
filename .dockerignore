@@ -1,6 +1,6 @@
-# The cv-app image is `FROM nginx:alpine; COPY . /usr/share/nginx/html`, i.e.
-# it serves the ENTIRE repo root publicly. Only the site itself should be
-# web-reachable — everything below is source/docs and must NOT be served.
+# The cv-app image copies only index.html + nginx.conf explicitly, so the
+# entries below are belt-and-suspenders: they keep source/docs out of the
+# build context entirely. Nothing here may ever be web-reachable.
 .git
 .gitignore
 .dockerignore
